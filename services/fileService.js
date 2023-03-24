@@ -32,6 +32,21 @@ class FileService {
 		const filePath = path.join(__dirname, "..", "public", fileName);
 		await unlink(filePath);
 	}
+
+	async downloadFile(fileName) {
+		const filePath = path.join(__dirname, "..", "public", fileName);
+		return filePath;
+	}
+
+	async getFiles(page = 1, limit = 10) {
+		const filesData = await fileQueries.getFilesData(page, limit);
+		return filesData;
+	}
+
+	async getFile(fileName) {
+		const fileData = await fileQueries.getFileData(fileName);
+		return fileData;
+	}
 }
 
 module.exports = new FileService();

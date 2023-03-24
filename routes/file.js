@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const fileController = require("../controllers/fileController");
 
-router.get("/file/list", fileController.getFiles);
-router.post("/file/upload", fileController.uploadFile);
-router.put("/file/update/:id", fileController.updateFile);
-router.delete("/file/delete/:id", fileController.deleteFile);
-router.delete("/file/download/:id", fileController.downloadFile);
-router.get("/file/:id", fileController.getFile);
+router.get("/list", fileController.getFiles);
+router.post("/upload", fileController.uploadFile);
+router.put("/update/:id", fileController.updateFile);
+router.delete("/delete/:id", fileController.deleteFile);
+router.get("/download/:id", fileController.downloadFile);
+router.get("/:id", fileController.getFile);
 
 module.exports = router;

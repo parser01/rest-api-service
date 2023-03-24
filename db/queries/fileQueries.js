@@ -24,6 +24,23 @@ class FileQueries {
 	async deleteFileData(fileName) {
 		await this.pool.query("DELETE FROM files WHERE name = ?", [fileName]);
 	}
+
+	async getFilesData(page, limit) {
+		const offset = (page - 1) * limit;
+		const [filesData] = await this.pool.query(
+			"SELECT * FROM files LIMIT ? OFFSET ?",
+			[limit, offset]
+		);
+		return filesData;
+	}
+
+	async getFileData(fileName) {
+		const [fileList] = await this.pool.query(
+			"SELECT * FROM files WHERE name = ?",
+			[fileName]
+		);
+		return fileList[0];
+	}
 }
 
 module.exports = new FileQueries(pool);

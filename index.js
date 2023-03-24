@@ -18,7 +18,7 @@ app.use(fileUpload({}));
 
 app.use(authRouter);
 app.use(userRouter);
-app.use(fileRouter);
+app.use("/file", fileRouter);
 
 app.use(errorMiddleware);
 
