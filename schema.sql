@@ -13,3 +13,12 @@ CREATE TABLE refreshTokens (
   FOREIGN KEY (userPrimaryKeyId) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE files (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  extension VARCHAR(255) NOT NULL,
+  mimetype VARCHAR(255) NOT NULL,
+  size INT NOT NULL,
+  created TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
