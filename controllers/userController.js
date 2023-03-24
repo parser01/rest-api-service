@@ -24,35 +24,51 @@ class UserController {
 	}
 
 	async signIn(req, res) {
-		const { userId, password } = req.body;
-		const userData = await userService.signIn(userId, password);
-		res.cookie("refreshToken", userData.refreshToken, {
-			maxAge: 30 * 24 * 60 * 60 * 1000,
-			httpOnly: true,
-		});
-		res.json(userData);
+		try {
+			const { userId, password } = req.body;
+			const userData = await userService.signIn(userId, password);
+			res.cookie("refreshToken", userData.refreshToken, {
+				maxAge: 30 * 24 * 60 * 60 * 1000,
+				httpOnly: true,
+			});
+			res.json(userData);
+		} catch (e) {
+			next(e);
+		}
 	}
 
 	async logOut(req, res) {
-		const { refreshToken } = req.cookies;
-		const tokenData = await userService.logOut(refreshToken);
-		res.clearCookie("refreshToken");
-		res.json(tokenData);
+		try {
+			const { refreshToken } = req.cookies;
+			const tokenData = await userService.logOut(refreshToken);
+			res.clearCookie("refreshToken");
+			res.json(tokenData);
+		} catch (e) {
+			next(e);
+		}
 	}
 
 	async refresh(req, res) {
-		const { refreshToken } = req.cookies;
-		const userData = await userService.refresh(refreshToken);
-		res.cookie("refreshToken", userData.refreshToken, {
-			maxAge: 30 * 24 * 60 * 60 * 1000,
-			httpOnly: true,
-		});
-		res.json(userData);
+		try {
+			const { refreshToken } = req.cookies;
+			const userData = await userService.refresh(refreshToken);
+			res.cookie("refreshToken", userData.refreshToken, {
+				maxAge: 30 * 24 * 60 * 60 * 1000,
+				httpOnly: true,
+			});
+			res.json(userData);
+		} catch (e) {
+			next(e);
+		}
 	}
 
 	async getUser(req, res) {
-		const userData = await userService.getUser(req.user);
-		res.json(userData);
+		try {
+			const userData = await userService.getUser(req.user);
+			res.json(userData);
+		} catch (e) {
+			next(e);
+		}
 	}
 }
 
