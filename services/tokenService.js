@@ -4,10 +4,10 @@ const refreshTokenQueries = require("../db/queries/refreshTokenQueries");
 class TokenService {
 	generateTokens(payload) {
 		const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {
-			expiresIn: "15s",
+			expiresIn: "10m",
 		});
 		const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
-			expiresIn: "30s",
+			expiresIn: "3d",
 		});
 		return {
 			accessToken,
@@ -16,6 +16,7 @@ class TokenService {
 	}
 
 	validateAccessToken(token) {
+		console.log("validateAccessToken");
 		try {
 			const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
 			return userData;
