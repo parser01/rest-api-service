@@ -10,7 +10,6 @@ class UserQueries {
 			"SELECT * FROM users WHERE userId = ?",
 			[userId]
 		);
-		console.log(userList);
 		return userList[0];
 	}
 
@@ -23,7 +22,6 @@ class UserQueries {
 			"SELECT * FROM users WHERE id = ?",
 			result.insertId
 		);
-		console.log(userList);
 		return userList[0];
 	}
 }

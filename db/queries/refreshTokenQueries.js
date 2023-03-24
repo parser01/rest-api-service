@@ -30,7 +30,6 @@ class RefreshTokenQueries {
 			"SELECT * FROM refreshTokens WHERE id = ?",
 			result.insertId
 		);
-		console.log("createToken: ", tokenList);
 		return tokenList[0];
 	}
 
@@ -39,7 +38,6 @@ class RefreshTokenQueries {
 			"UPDATE refreshTokens SET token = ? WHERE userPrimaryKeyId = ?",
 			[refreshToken, userPimaryKeyId]
 		);
-		console.log("updateToken result: ", result);
 	}
 
 	async deleteToken(refreshToken) {
@@ -50,7 +48,6 @@ class RefreshTokenQueries {
 		await this.pool.query("DELETE FROM refreshTokens WHERE token = ?", [
 			refreshToken,
 		]);
-		console.log("deleteToken: ", tokenList);
 		return tokenList[0];
 	}
 }

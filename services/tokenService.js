@@ -16,7 +16,6 @@ class TokenService {
 	}
 
 	validateAccessToken(token) {
-		console.log("validateAccessToken");
 		try {
 			const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
 			return userData;
@@ -43,7 +42,6 @@ class TokenService {
 		const tokenData = await refreshTokenQueries.findTokenByUserId(
 			userPrimaryKeyId
 		);
-		console.log("saveRefreshToken: ", tokenData);
 		if (tokenData) {
 			return refreshTokenQueries.updateToken(userPrimaryKeyId, refreshToken);
 		}

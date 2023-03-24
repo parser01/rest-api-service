@@ -6,7 +6,6 @@ const { unlink } = require("node:fs/promises");
 
 class FileService {
 	async uploadFile(file) {
-		console.log("fileService.uploadFile(file) called", file);
 		const fileExtension = path.extname(file.name);
 		const newFileName = uuidv4() + "" + fileExtension;
 		const fileDto = new FileDto({ newFileName, fileExtension, ...file });
