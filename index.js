@@ -9,12 +9,14 @@ const fileRouter = require("./routes/file");
 const errorMiddleware = require("./middlewares/errorMiddleware");
 
 const PORT = process.env.PORT || 5000;
-const app = express({
-	origin: process.env.CLIENT_URL,
-	credentials: true,
-});
+const app = express();
 
-app.use(cors());
+app.use(
+	cors({
+		origin: process.env.CLIENT_URL,
+		credentials: true,
+	})
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use(fileUpload({}));
