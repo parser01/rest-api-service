@@ -9,7 +9,9 @@ const fileRouter = require("./routes/file");
 const errorMiddleware = require("./middlewares/errorMiddleware");
 
 const PORT = process.env.PORT || 5000;
-const app = express();
+const app = express({
+	credentials: true,
+});
 
 app.use(cors());
 app.use(express.json());
