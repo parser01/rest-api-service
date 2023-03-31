@@ -23,7 +23,7 @@ class AuthController {
 		}
 	}
 
-	async signIn(req, res) {
+	async signIn(req, res, next) {
 		try {
 			const { userId, password } = req.body;
 			const userData = await userService.signIn(userId, password);
@@ -37,7 +37,7 @@ class AuthController {
 		}
 	}
 
-	async logOut(req, res) {
+	async logOut(req, res, next) {
 		try {
 			const { refreshToken } = req.cookies;
 			const tokenData = await userService.logOut(refreshToken);
@@ -48,7 +48,7 @@ class AuthController {
 		}
 	}
 
-	async refresh(req, res) {
+	async refresh(req, res, next) {
 		try {
 			const { refreshToken } = req.cookies;
 			const userData = await userService.refresh(refreshToken);
