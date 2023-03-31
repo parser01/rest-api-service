@@ -10,6 +10,7 @@ const errorMiddleware = require("./middlewares/errorMiddleware");
 
 const PORT = process.env.PORT || 5000;
 const app = express({
+	origin: process.env.CLIENT_URL,
 	credentials: true,
 });
 
